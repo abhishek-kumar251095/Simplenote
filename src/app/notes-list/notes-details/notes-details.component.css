@@ -27,5 +27,12 @@ textarea.note-content:focus, input.note-title:focus {
 }
 
 textarea.note-content {
-    /* overflow: hidden; */
+    font-family: 'Source Serif Pro', sans-serif;
+}
+
+input.note-title {
+
+    font-family: 'Source Serif Pro';
+    font-size: large;
+    
 }

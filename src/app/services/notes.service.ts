@@ -13,7 +13,7 @@ export class NotesService {
 
   private baseUrl = 'http://localhost:3000/';
 
-  private tempToken = 'JWT auth-token'; // To be implmented
+  private tempToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTllOTRiMTUxZjhhNDQ1MWNhZGM5N2QiLCJ1c2VybmFtZSI6ImZpcnN0Q2l0aXplbiIsImV4cCI6MTU4ODIyODI5OCwiaWF0IjoxNTg3NjIzNDk4fQ.9S_FkYZbvWBrs1D7Ty2syHbBfJA7xYnNBxFhqj6x2v0"
 
   constructor(public httpClient: HttpClient) { }
 

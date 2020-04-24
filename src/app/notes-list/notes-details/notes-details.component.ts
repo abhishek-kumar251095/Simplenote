@@ -24,6 +24,7 @@ export class NotesDetailsComponent implements OnInit, AfterContentChecked {
   faInfo = faInfo;
   faClock = faClock;
   faTrash = faTrash;
+  undoDelete = false;
 
   constructor(public activateRoute: ActivatedRoute, public notesService: NotesService,
               public router: Router) { }
@@ -89,7 +90,7 @@ export class NotesDetailsComponent implements OnInit, AfterContentChecked {
     console.log('hola');
 
     this.noteStatus = 'unsaved...';
-    
+
     if (this.notesForm.value.content !== this.currentNote.content && this.editMode) {
       this.editMode = false;
       setTimeout(() => {
