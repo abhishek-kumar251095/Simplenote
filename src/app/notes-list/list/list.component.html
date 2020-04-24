@@ -1,0 +1,8 @@
+<div 
+    class="notes-list" 
+    (click) = "onGetNoteDetails(note._id)"
+    [class.activeX] = "isActive(['notes', note._id])"
+>
+    <p class="title">{{note.title}}</p>
+    <p class="content-peek" *ngIf = "isActive(['notes', note._id])">{{note.content.slice(0,25)}}</p>
+</div>

@@ -1,0 +1,29 @@
+.list-container {
+    border-right: 1px solid rgb(197, 197, 197);
+}
+
+.new-note-button {
+    cursor: pointer;
+}
+
+.search-input {
+    height: 80%;
+    border-radius: 25px;
+}
+
+.text-large {
+    font-size: x-large;
+}
+
+.search-input:focus {
+    border: 1px solid cadetblue;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.list-container {
+    min-height: 40em;
+}
+
+
+

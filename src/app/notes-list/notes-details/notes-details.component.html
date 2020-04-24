@@ -1,0 +1,36 @@
+<div class="notes-detail">
+    <div class="row icons-container">
+        <div class="col-md-7">
+            <fa-icon [icon] = "faInfo" class="fa-icon text-info"></fa-icon>
+            <fa-icon [icon] = "faClock" class="fa-icon text-info"></fa-icon>
+            <fa-icon [icon] = "faTrash" class="fa-icon text-info"></fa-icon>
+        </div>
+        <div class="col-md-2">
+            <div class="text-info isSaving"> {{noteStatus}} </div>
+        </div>
+        <div class="col-md-3">
+            <div class="text-info username"> abhishek0032 </div>
+        </div>
+    </div>
+    <hr/>
+    <form class="form-group" [formGroup] = "notesForm">
+        <input
+            class = "form-control note-title"
+            id = "title"
+            placeholder="Title..."
+            [formControlName] = "'title'"
+            name = "title"
+            (input) = "onInputTitle()"
+        />
+        <textarea 
+            class = "form-control note-content"
+            id = "content"
+            rows = "19"
+            name="content"
+            [formControlName] = "'content'"
+            placeholder="Content..."
+            (input) = "onInputContent()">
+        </textarea>
+    </form>
+</div>
+
