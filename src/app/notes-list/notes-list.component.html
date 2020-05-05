@@ -11,6 +11,9 @@
                         <fa-icon [icon]="faPlus" class="text-info new-note-button" (click) = "onNewNote()"></fa-icon>
                     </div>
                 </div>
+                <div class="undo-delete" *ngIf = "recentlyDeleted.isRecentlyDeleted">
+                    <span class="text-info undo-delete-text" (click) = "onUndoDelete()">Undo Delete</span>
+                </div>
                 <hr/>
             </div>
             <div class="notes-list" *ngFor = "let note of renderNotes().reverse()">

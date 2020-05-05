@@ -85,9 +85,8 @@ export class NotesDetailsComponent implements OnInit, AfterContentChecked {
         });
   }
 
-  onInputContent(): void {
 
-    console.log('hola');
+  onInputContent(): void {
 
     this.noteStatus = 'unsaved...';
 
@@ -106,6 +105,7 @@ export class NotesDetailsComponent implements OnInit, AfterContentChecked {
     }
   }
 
+
   onInputTitle(): void {
 
     this.noteStatus = 'unsaved...'
@@ -121,6 +121,15 @@ export class NotesDetailsComponent implements OnInit, AfterContentChecked {
     } else {
       this.editMode = false;
     }
+  }
+
+
+  onDeleteNote(): void {
+    this.notesService
+        .softDeleteNote(this.currentNote._id)
+        .subscribe(res => {
+          this.notesService.noteDeleteEmitter.next(res._id);
+        });
   }
 
 }
