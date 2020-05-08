@@ -1,0 +1,20 @@
+.form-group > input {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid cadetblue; 
+    margin-top: 1em;
+    background-color: inherit;
+}
+
+.form-group > input:focus {
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+}
+
+.card {
+    margin-top: 3em !important;
+    background-color: whitesmoke;
+    margin: auto;
+    max-width: 40em;
+}

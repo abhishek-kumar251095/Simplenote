@@ -3,8 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NotesModel } from 'src/app/models/notes.model';
 import { FormGroup, FormControl,  Validators } from '@angular/forms';
 import { NotesService } from 'src/app/services/notes.service';
-import { faInfo, faClock, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faInfo, faClock, faTrash, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { flatMap } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-notes-details',
@@ -24,13 +25,15 @@ export class NotesDetailsComponent implements OnInit, AfterContentChecked {
   faInfo = faInfo;
   faClock = faClock;
   faTrash = faTrash;
+  faSignOut = faSignOutAlt
   undoDelete = false;
+  username: string;
 
   constructor(public activateRoute: ActivatedRoute, public notesService: NotesService,
-              public router: Router) { }
+              public router: Router, public authService: AuthService) { }
 
   ngOnInit(): void {
-
+    this.username = this.authService.getUsername();
     this.notesForm = new FormGroup({
       title: new FormControl(null, Validators.required),
       content: new FormControl(null, Validators.required)
@@ -130,6 +133,12 @@ export class NotesDetailsComponent implements OnInit, AfterContentChecked {
         .subscribe(res => {
           this.notesService.noteDeleteEmitter.next(res._id);
         });
+  }
+
+  onLogout() {
+
+    this.authService.logout();
+    this.router.navigate(['auth', 'login']);
   }
 
 }

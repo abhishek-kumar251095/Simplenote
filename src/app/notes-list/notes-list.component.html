@@ -8,7 +8,12 @@
                         <input type="text" class="form-control search-input" (input) = "onSearch($event)" placeholder="Search...">
                     </div>
                     <div class="col-md-2">
-                        <fa-icon [icon]="faPlus" class="text-info new-note-button" (click) = "onNewNote()"></fa-icon>
+                        <fa-icon 
+                            [icon]="faPlus" 
+                            class="text-info new-note-button" 
+                            (click) = "onNewNote()"
+                            ngbPopover="New Note" 
+                            triggers="mouseenter:mouseleave"></fa-icon>
                     </div>
                 </div>
                 <div class="undo-delete" *ngIf = "recentlyDeleted.isRecentlyDeleted">

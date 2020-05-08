@@ -3,6 +3,7 @@ import { Subject, Observable } from 'rxjs';
 import { NotesModel } from '../models/notes.model';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { RecentlyDeletedModel } from '../models/recently.deleted.model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +16,15 @@ export class NotesService {
 
   private baseUrl = 'http://localhost:3000/';
 
-  private tempToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTllOTRiMTUxZjhhNDQ1MWNhZGM5N2QiLCJ1c2VybmFtZSI6ImZpcnN0Q2l0aXplbiIsImV4cCI6MTU4OTI3OTMzNywiaWF0IjoxNTg4Njc0NTM3fQ.VFbceSZJMf7HKL4NIZkoOaeb6jYSshflgXbycvkAd7w"
-
-  constructor(public httpClient: HttpClient) { }
+  constructor(public httpClient: HttpClient, public authService: AuthService) { }
 
   getNotes(): Observable<NotesModel[] | any> {
 
+    let token = this.authService.getToken()
+
     const reqHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${JSON.parse(JSON.stringify(this.tempToken))}`
+      'Authorization': `Bearer ${JSON.parse(JSON.stringify(token))}`
     })
 
     return this.httpClient.get(this.baseUrl+'notes', {headers: reqHeaders});
@@ -32,9 +33,11 @@ export class NotesService {
 
   postNotes(note: NotesModel): Observable<Object> {
 
+    let token = this.authService.getToken()
+
     const reqHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${JSON.parse(JSON.stringify(this.tempToken))}`
+      'Authorization': `Bearer ${JSON.parse(JSON.stringify(token))}`
     })
 
     return this.httpClient.post(this.baseUrl+'notes', note, {headers: reqHeaders});
@@ -43,9 +46,11 @@ export class NotesService {
 
   getNoteById(id: string): Observable<NotesModel | any> {
 
+    let token = this.authService.getToken()
+
     const reqHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${JSON.parse(JSON.stringify(this.tempToken))}`
+      'Authorization': `Bearer ${JSON.parse(JSON.stringify(token))}`
     })
 
     return this.httpClient.get(this.baseUrl+`notes/${id}`, {headers: reqHeaders});
@@ -54,9 +59,11 @@ export class NotesService {
 
   softDeleteNote(id: string): Observable<NotesModel | any> {
 
+    let token = this.authService.getToken()
+
     const reqHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${JSON.parse(JSON.stringify(this.tempToken))}`
+      'Authorization': `Bearer ${JSON.parse(JSON.stringify(token))}`
     });
 
     return this.httpClient.delete(this.baseUrl+`notes/${id}`, {headers: reqHeaders});
@@ -64,9 +71,12 @@ export class NotesService {
   }
 
   undoDeleteNote(recentlyDeletedData: RecentlyDeletedModel) {
+
+    let token = this.authService.getToken();
+
     const reqHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${JSON.parse(JSON.stringify(this.tempToken))}`
+      'Authorization': `Bearer ${JSON.parse(JSON.stringify(token))}`
     });
 
     return this.httpClient.put(this.baseUrl+`notes?recentlyDeleted=${recentlyDeletedData.id}`, {}, {headers: reqHeaders});
